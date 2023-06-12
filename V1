@@ -1,0 +1,464 @@
+print("/ENIGMA/")
+line = "-----------------------------------"
+print(line)
+print("LOADING...")
+import os
+username = os.environ['REPL_OWNER']
+with open("why.txt","r") as file:
+  reason_filedata = file.read()
+from time import sleep as wait
+import random
+from replit import db
+offsets = ["n","N","z","Z","m","M","&","-","+","?","P","p","X","x","Y","y"]
+characters = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","1","2","3","4","5","6","7","8","9",",",".",'"',"'","<",">","/","?",":",";","-","_","+","=","[","]","{","}","|","(",")","*","&","^","%","$","#","@","!","~","`"," ","•"]
+def assign():
+  custom = input("key: ")
+  sum = []
+  for i in range(0,round(len(custom)/2)):
+    try:
+      sum.append([custom[i*2],custom[i*2+1]])
+    except:
+      sum.append(custom[i*2])
+  return sum
+def quick_assign():
+  sum = []
+  for i in characters:
+    char = random.choice(characters)
+    while not i in sum:
+      char = random.choice(characters)
+      if len(char) == 1 and not char in sum:
+        sum.append(char)
+        break
+    sum.append(i)
+  listed = []
+  for i in sum:
+    if not i in listed:
+      listed.append(i)
+  sum = []
+  for i in range(0,round(len(listed) / 2)):
+    table = []
+    table.append(listed[i*2])
+    table.append(listed[i*2+1])
+    sum.append(table)
+  sum.append(random.choice(offsets))
+  return sum
+def encrypt(text):
+  sum = ""
+  for i in text:
+    for v in key:
+      if key.index(v) == len(key):
+        break
+      if i in v:
+        if key[len(key)-1] == "n":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-8][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-8][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "N":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-7][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-7][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "z":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-6][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-6][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "Z":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-5][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-5][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "m":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-4][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-4][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "M":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-3][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-3][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "&":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-2][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-2][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "-":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-1][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-1][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "+":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+1][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+1][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "?":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+2][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+2][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "P":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+3][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+3][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "p":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+4][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+4][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "X":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+5][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+5][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "x":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+6][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+6][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "Y":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+7][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+7][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "y":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+8][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+8][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+  return sum
+def decrypt(text):
+  sum = ""
+  for i in text:
+    for v in key:
+      if key.index(v) == len(key):
+        break
+      if i in v:
+        if key[len(key)-1] == "n":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+8][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+8][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "N":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+7][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+7][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "z":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+6][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+6][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "Z":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+5][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+5][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "m":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+4][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+4][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "M":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+3][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+3][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "&":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+2][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+2][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "-":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)+1][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)+1][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "+":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-1][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-1][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "?":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-2][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-2][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "P":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-3][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-3][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "p":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-4][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-4][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "X":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-5][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-5][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "x":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-6][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-6][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "Y":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-7][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-7][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+        elif key[len(key)-1] == "y":
+          if v[0] == i:
+            try:
+              sum = sum + key[key.index(v)-8][1]
+            except:
+              sum = sum + key[key.index(v)][1]
+          elif v[1] == i:
+            try:
+              sum = sum + key[key.index(v)-8][0]
+            except:
+              sum = sum + key[key.index(v)][0]
+  return sum
+print("PASSCODE NEEDED")
+attempt = input("passcode: ")
+key = quick_assign()
+try:
+  code = db["secret key for software"]
+except:
+  db["secret key for software"] = "admin"
+while not attempt == db["secret key for software"]:
+  print("Incorrect code!")
+  attempt = input("passcode: ")
+print("Type 'help' for list of commands!")
+print(line)
+while True:
+  command = input("/")
+  if command == "help":
+    print(line)
+    print("/set random")
+    print("/set custom")
+    print("/print key")
+    print("/encrypt")
+    print("/decrypt")
+    print("/save key")
+    print("/load key")
+    print("/change passcode")
+    print("/reason")
+  elif command == "set custom":
+    key = assign()
+  elif command == "set random":
+    key = quick_assign()
+  elif command == "print key":
+    sum = ""
+    for i in key:
+      try:
+        sum = sum + i[0] + i[1]
+      except:
+        sum = sum + i
+    print(sum)
+  elif command.lower() == "encrypt":
+    print("encrypted text: " + encrypt(input("text: ")))
+  elif command.lower() == "decrypt":
+    print("decrypted text: " + decrypt(input("text: ")))
+  elif command.lower() == "save key":
+    db[input("key address: ")] = key
+  elif command.lower() == "load key":
+    key = db[input("key address: ")]
+  elif command.lower() == "reason":
+    print(reason_filedata)
+  elif command.lower() == "change passcode":
+    db["secret key for software"] = input("new passcode: ")
+  else:
+    print("Command doesn't exist!")
+  print(line)
